@@ -32,34 +32,45 @@ struct RestaurantListView: View {
         Restaurant(name: "Royal Oak", type: "British", location: "London", image: "royaloak", isFavorite: false),
         Restaurant(name: "CASK Pub and Kitchen", type: "Thai", location: "London", image: "cask", isFavorite: false)
     ]
-
+    
     
     @State var restaurantIsFavorites = Array(repeating: false, count: 21)
     
     var body: some View {
-        List {
-            ForEach(restaurants.indices, id: \.self) { index in
-                BasicTextImageRow(restaurant: $restaurants[index])
-                    .swipeActions(edge: .leading, allowsFullSwipe: false) {
-                        Button {
-                            
-                        } label: {
-                            Image(systemName: "heart")
+        NavigationStack {
+            List {
+                ForEach(restaurants.indices, id: \.self) { index in
+                    ZStack(alignment: .leading) {
+                        NavigationLink(destination: RestaurantDetailView(restaurant: restaurants[index])) {
+                            EmptyView()
                         }
-                        .tint(.green)
-                        Button {
-                            
-                        } label: {
-                            Image(systemName: "square.and.arrow.up")
-                        }
-                        .tint(.orange)
+                        .opacity(0)
+                        BasicTextImageRow(restaurant: $restaurants[index])
+                            .swipeActions(edge: .leading, allowsFullSwipe: false) {
+                                Button {
+                                    
+                                } label: {
+                                    Image(systemName: "heart")
+                                }
+                                .tint(.green)
+                                Button {
+                                    
+                                } label: {
+                                    Image(systemName: "square.and.arrow.up")
+                                }
+                                .tint(.orange)
+                            }
                     }
-            }.onDelete(perform: { indexSet in
-                restaurants.remove(atOffsets: indexSet)
-            })
-            .listRowSeparator(.hidden)
+                }.onDelete(perform: { indexSet in
+                    restaurants.remove(atOffsets: indexSet)
+                })
+                .listRowSeparator(.hidden)
+            }
+            .listStyle(.plain)
+            .navigationTitle("FoodPin")
+            .navigationBarTitleDisplayMode(.automatic)
         }
-        .listStyle(.plain)
+        .accentColor(.white)
     }
 }
 
@@ -129,11 +140,29 @@ struct BasicTextImageRow: View {
                     Image(systemName: "heart")
                 }
             }
+            Button {
+                self.showOptions.toggle()
+            } label: {
+                HStack {
+                    Text("Share")
+                    Image(systemName: "square.and.arrow.up")
+                }
+            }
+            
         }
         .alert("Not yet available", isPresented: $showError) {
             Button("OK") {}
         } message: {
             Text("Sorry, this feature is not available yet. Please retry later.")
+        }
+        .sheet(isPresented: $showOptions) {
+            let defaultText = "Just checking in at \(restaurant.name)"
+            
+            if let imageToShare = UIImage(named: restaurant.image) {
+                ActivityView(activityItems: [defaultText, imageToShare])
+            } else {
+                ActivityView(activityItems: [defaultText])
+            }
         }
     }
 }
@@ -152,13 +181,13 @@ struct FullImageRow: View {
                 .scaledToFill()
                 .frame(height: 200)
                 .cornerRadius(20)
-                Text(name)
-                    .font(.system(.title2, design: .rounded))
-                Text(type)
-                    .font(.system(.body, design: .rounded))
-                Text(location)
-                    .font(.system(.subheadline, design: .rounded))
-                    .foregroundColor(.gray)
+            Text(name)
+                .font(.system(.title2, design: .rounded))
+            Text(type)
+                .font(.system(.body, design: .rounded))
+            Text(location)
+                .font(.system(.subheadline, design: .rounded))
+                .foregroundColor(.gray)
         }
     }
 }
