@@ -13,6 +13,7 @@
 		047700672A4C968900972A90 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 047700662A4C968900972A90 /* Preview Assets.xcassets */; };
 		0477006E2A4D4C9C00972A90 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0477006D2A4D4C9C00972A90 /* Restaurant.swift */; };
 		8D3D8E3C2A53C97D00B23DBC /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3D8E3B2A53C97D00B23DBC /* ActivityView.swift */; };
+		8D8338BD2A599FE2005F2345 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8338BC2A599FE2005F2345 /* UIColor+Ext.swift */; };
 		8DFCCAC22A54ED3C00C0C6E4 /* RestaurantDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFCCAC12A54ED3C00C0C6E4 /* RestaurantDetailView.swift */; };
 		8DFCCAC72A54F66800C0C6E4 /* Nunito-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8DFCCAC52A54F66800C0C6E4 /* Nunito-Bold.ttf */; };
 		8DFCCAC82A54F66800C0C6E4 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8DFCCAC62A54F66800C0C6E4 /* Nunito-Regular.ttf */; };
@@ -26,6 +27,7 @@
 		047700662A4C968900972A90 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0477006D2A4D4C9C00972A90 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		8D3D8E3B2A53C97D00B23DBC /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
+		8D8338BC2A599FE2005F2345 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		8DFCCAC12A54ED3C00C0C6E4 /* RestaurantDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailView.swift; sourceTree = "<group>"; };
 		8DFCCAC52A54F66800C0C6E4 /* Nunito-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Bold.ttf"; sourceTree = "<group>"; };
 		8DFCCAC62A54F66800C0C6E4 /* Nunito-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Regular.ttf"; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 		0477005E2A4C968800972A90 /* FoodPin */ = {
 			isa = PBXGroup;
 			children = (
+				8D8338BB2A599FC9005F2345 /* Extensions */,
 				8DFCCAC92A54F6D000C0C6E4 /* Info.plist */,
 				8DFCCAC32A54F58A00C0C6E4 /* Resources */,
 				047700702A4F79FA00972A90 /* Model */,
@@ -97,6 +100,14 @@
 				0477006D2A4D4C9C00972A90 /* Restaurant.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		8D8338BB2A599FC9005F2345 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8D8338BC2A599FE2005F2345 /* UIColor+Ext.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		8DFCCAC32A54F58A00C0C6E4 /* Resources */ = {
@@ -191,6 +202,7 @@
 				047700622A4C968800972A90 /* RestaurantListView.swift in Sources */,
 				8DFCCAC22A54ED3C00C0C6E4 /* RestaurantDetailView.swift in Sources */,
 				8D3D8E3C2A53C97D00B23DBC /* ActivityView.swift in Sources */,
+				8D8338BD2A599FE2005F2345 /* UIColor+Ext.swift in Sources */,
 				047700602A4C968800972A90 /* FoodPinApp.swift in Sources */,
 				0477006E2A4D4C9C00972A90 /* Restaurant.swift in Sources */,
 			);
