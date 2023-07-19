@@ -2,11 +2,10 @@
 //  Restaurant.swift
 //  FoodPin
 //
-//  Created by Christyan Duarte on 28/06/23.
+//  Created by Simon Ng on 16/10/2022.
 //
 
-
-import Foundation
+import Combine
 
 class Restaurant: ObservableObject {
     
@@ -16,7 +15,7 @@ class Restaurant: ObservableObject {
         case okay
         case bad
         case terrible
-        
+
         var image: String {
             switch self {
             case .awesome: return "love"
@@ -26,6 +25,7 @@ class Restaurant: ObservableObject {
             case .terrible: return "angry"
             }
         }
+        
     }
     
     @Published var name: String
@@ -34,10 +34,10 @@ class Restaurant: ObservableObject {
     @Published var phone: String
     @Published var description: String
     @Published var image: String
-    @Published var isFavorite: Bool
+    @Published var isFavorite: Bool = false
     @Published var rating: Rating?
     
-    init(name: String, type: String, location: String, phone: String, description: String, image: String, isFavorite: Bool, rating: Rating? = nil) {
+    init(name: String, type: String, location: String, phone: String, description: String, image: String, isFavorite: Bool = false, rating: Rating? = nil) {
         self.name = name
         self.type = type
         self.location = location
@@ -48,4 +48,3 @@ class Restaurant: ObservableObject {
         self.rating = rating
     }
 }
-

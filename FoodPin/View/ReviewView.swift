@@ -2,13 +2,12 @@
 //  ReviewView.swift
 //  FoodPin
 //
-//  Created by Christyan Duarte on 12/07/23.
+//  Created by Simon Ng on 20/10/2022.
 //
 
 import SwiftUI
 
 struct ReviewView: View {
-    
     @Binding var isDisplayed: Bool
     @State private var showRatings = false
     
@@ -21,28 +20,35 @@ struct ReviewView: View {
                 .scaledToFill()
                 .frame(minWidth: 0, maxWidth: .infinity)
                 .ignoresSafeArea()
+            
             Color.black
                 .opacity(0.6)
                 .background(.ultraThinMaterial)
                 .ignoresSafeArea()
+            
             HStack {
                 Spacer()
+                
                 VStack {
-                    Button {
+                    Button(action: {
                         withAnimation(.easeOut(duration: 0.3)) {
                             self.isDisplayed = false
                         }
-                    } label: {
+                    }) {
                         Image(systemName: "xmark")
                             .font(.system(size: 30.0))
                             .foregroundColor(.white)
                             .padding()
                     }
+                    
                     Spacer()
                 }
             }
+            
             VStack(alignment: .leading) {
+                
                 ForEach(Restaurant.Rating.allCases, id: \.self) { rating in
+                    
                     HStack {
                         Image(rating.image)
                         Text(rating.rawValue.capitalized)
