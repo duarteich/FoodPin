@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0497D5BC2A680DCD009192BC /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0497D5BB2A680DCD009192BC /* Persistence.swift */; };
+		0497D5BF2A68151D009192BC /* FoodPin.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0497D5BD2A68151D009192BC /* FoodPin.xcdatamodeld */; };
+		04D1BCB52A6B4DAC00C27547 /* RestaurantFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D1BCB42A6B4DAC00C27547 /* RestaurantFormViewModel.swift */; };
 		8D8524712A656E380077B6B2 /* NewRestaurantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8524702A656E380077B6B2 /* NewRestaurantView.swift */; };
 		8D8524742A6576370077B6B2 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8524732A6576370077B6B2 /* ImagePicker.swift */; };
 		F4AFE4D128F92AA8006639B1 /* FoodPinApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AFE4D028F92AA8006639B1 /* FoodPinApp.swift */; };
@@ -24,6 +27,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0497D5BB2A680DCD009192BC /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		0497D5BE2A68151D009192BC /* FoodPin.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FoodPin.xcdatamodel; sourceTree = "<group>"; };
+		04D1BCB42A6B4DAC00C27547 /* RestaurantFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantFormViewModel.swift; sourceTree = "<group>"; };
 		8D8524702A656E380077B6B2 /* NewRestaurantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRestaurantView.swift; sourceTree = "<group>"; };
 		8D8524732A6576370077B6B2 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		F4AFE4CD28F92AA8006639B1 /* FoodPin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodPin.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -53,6 +59,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04D1BCB32A6B4D8E00C27547 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				04D1BCB42A6B4DAC00C27547 /* RestaurantFormViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		8D8524722A65761D0077B6B2 /* Util */ = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +94,7 @@
 		F4AFE4CF28F92AA8006639B1 /* FoodPin */ = {
 			isa = PBXGroup;
 			children = (
+				04D1BCB32A6B4D8E00C27547 /* ViewModel */,
 				8D8524722A65761D0077B6B2 /* Util */,
 				F4AFE4EF28FF907D006639B1 /* Extensions */,
 				F4AFE4EE28FF02E2006639B1 /* Info.plist */,
@@ -89,6 +104,7 @@
 				F4AFE4D028F92AA8006639B1 /* FoodPinApp.swift */,
 				F4AFE4D428F92AAA006639B1 /* Assets.xcassets */,
 				F4AFE4D628F92AAA006639B1 /* Preview Content */,
+				0497D5BD2A68151D009192BC /* FoodPin.xcdatamodeld */,
 			);
 			path = FoodPin;
 			sourceTree = "<group>";
@@ -105,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				F4AFE4E028FBB6C5006639B1 /* Restaurant.swift */,
+				0497D5BB2A680DCD009192BC /* Persistence.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -219,6 +236,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04D1BCB52A6B4DAC00C27547 /* RestaurantFormViewModel.swift in Sources */,
+				0497D5BC2A680DCD009192BC /* Persistence.swift in Sources */,
 				F4AFE4F5290056D3006639B1 /* ReviewView.swift in Sources */,
 				F4AFE4F328FFC9C0006639B1 /* MapView.swift in Sources */,
 				F4AFE4D328F92AA8006639B1 /* RestaurantListView.swift in Sources */,
@@ -229,6 +248,7 @@
 				8D8524742A6576370077B6B2 /* ImagePicker.swift in Sources */,
 				F4AFE4D128F92AA8006639B1 /* FoodPinApp.swift in Sources */,
 				F4AFE4E128FBB6C5006639B1 /* Restaurant.swift in Sources */,
+				0497D5BF2A68151D009192BC /* FoodPin.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,6 +449,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		0497D5BD2A68151D009192BC /* FoodPin.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				0497D5BE2A68151D009192BC /* FoodPin.xcdatamodel */,
+			);
+			currentVersion = 0497D5BE2A68151D009192BC /* FoodPin.xcdatamodel */;
+			path = FoodPin.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = F4AFE4C528F92AA8006639B1 /* Project object */;
 }
