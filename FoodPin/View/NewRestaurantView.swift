@@ -2,17 +2,12 @@
 //  NewRestaurantView.swift
 //  FoodPin
 //
-//  Created by Christyan Duarte on 7/17/23.
+//  Created by Simon Ng on 20/10/2022.
 //
 
 import SwiftUI
 
 struct NewRestaurantView: View {
-    
-    @ObservedObject private var restaurantFormViewModel: RestaurantFormViewModel
-    
-    @State var restaurantName = ""
-    @State private var showPhotoOptions = false
     
     @Environment(\.dismiss) var dismiss
     @Environment(\.managedObjectContext) var context
@@ -26,7 +21,12 @@ struct NewRestaurantView: View {
         }
     }
     
+    @State var restaurantName = ""
+    
+    @State private var showPhotoOptions = false
     @State private var photoSource: PhotoSource?
+    
+    @ObservedObject private var restaurantFormViewModel: RestaurantFormViewModel
     
     init() {
         let viewModel = RestaurantFormViewModel()
@@ -36,8 +36,10 @@ struct NewRestaurantView: View {
     
     var body: some View {
         NavigationStack {
+
             ScrollView {
                 VStack {
+                    
                     Image(uiImage: restaurantFormViewModel.image)
                         .resizable()
                         .scaledToFill()
@@ -49,29 +51,36 @@ struct NewRestaurantView: View {
                         .onTapGesture {
                             self.showPhotoOptions.toggle()
                         }
-                    FormTextField(label: "NAME", placeholder: "Fill in the restaurant name",
-                                  value: $restaurantFormViewModel.name)
-                    FormTextField(label: "TYPE", placeholder: "Fill in the restaurant type",
-                                  value: $restaurantFormViewModel.type)
-                    FormTextField(label: "ADDRESS", placeholder: "Fill in the restaurant address",
-                                  value: $restaurantFormViewModel.location)
-                    FormTextField(label: "PHONE", placeholder: "Fill in the restaurant phone",
-                                  value: $restaurantFormViewModel.phone)
+                    
+                    FormTextField(label: "NAME", placeholder: "Fill in the restaurant name", value: $restaurantFormViewModel.name)
+
+                    FormTextField(label: "TYPE", placeholder: "Fill in the restaurant type", value: $restaurantFormViewModel.type)
+
+                    FormTextField(label: "ADDRESS", placeholder: "Fill in the restaurant address", value: $restaurantFormViewModel.location)
+
+                    FormTextField(label: "PHONE", placeholder: "Fill in the restaurant phone", value: $restaurantFormViewModel.phone)
+
                     FormTextView(label: "DESCRIPTION", value: $restaurantFormViewModel.description, height: 100)
                 }
                 .padding()
+                
             }
+            
+            // Navigation bar configuration
             .navigationTitle("New Restaurant")
+            
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button {
+                    Button(action: {
                         dismiss()
-                    } label: {
+                    }) {
                         Image(systemName: "xmark")
                     }
-
+                    
                 }
+                
                 ToolbarItem(placement: .navigationBarTrailing) {
+                    
                     Button {
                         save()
                         dismiss()
@@ -85,7 +94,8 @@ struct NewRestaurantView: View {
             }
         }
         .actionSheet(isPresented: $showPhotoOptions) {
-            ActionSheet(title: Text("Choose your source"),
+            
+            ActionSheet(title: Text("Choose your photo source"),
                         message: nil,
                         buttons: [
                             .default(Text("Camera")) {
@@ -99,12 +109,8 @@ struct NewRestaurantView: View {
         }
         .fullScreenCover(item: $photoSource) { source in
             switch source {
-            case .photoLibrary:
-                ImagePicker(sourceType: .photoLibrary, selectedImage: $restaurantFormViewModel.image)
-                    .ignoresSafeArea()
-            case .camera:
-                ImagePicker(sourceType: .camera, selectedImage: $restaurantFormViewModel.image)
-                    .ignoresSafeArea()
+            case .photoLibrary: ImagePicker(sourceType: .photoLibrary, selectedImage: $restaurantFormViewModel.image).ignoresSafeArea()
+            case .camera: ImagePicker(sourceType: .camera, selectedImage: $restaurantFormViewModel.image).ignoresSafeArea()
             }
         }
         .accentColor(.primary)
@@ -112,6 +118,7 @@ struct NewRestaurantView: View {
     
     private func save() {
         let restaurant = Restaurant(context: context)
+        
         restaurant.name = restaurantFormViewModel.name
         restaurant.type = restaurantFormViewModel.type
         restaurant.location = restaurantFormViewModel.location
@@ -129,6 +136,20 @@ struct NewRestaurantView: View {
     }
 }
 
+struct NewRestaurantView_Previews: PreviewProvider {
+    static var previews: some View {
+        NewRestaurantView()
+        
+        FormTextField(label: "NAME", placeholder: "Fill in the restaurant name", value: .constant(""))
+            .previewLayout(.fixed(width: 300, height: 200))
+            .previewDisplayName("FormTextField")
+        
+        FormTextView(label: "Description", value: .constant(""))
+            .previewLayout(.sizeThatFits)
+            .previewDisplayName("FormTextView")
+    }
+}
+
 struct FormTextField: View {
     let label: String
     var placeholder: String = ""
@@ -140,20 +161,23 @@ struct FormTextField: View {
             Text(label.uppercased())
                 .font(.system(.headline, design: .rounded))
                 .foregroundColor(Color(.darkGray))
+            
             TextField(placeholder, text: $value)
-                .font(.system(size: 20, weight: .semibold, design: .rounded))
-                .padding(.horizontal)
+                .font(.system(.body, design: .rounded))
+                .textFieldStyle(PlainTextFieldStyle())
                 .padding(10)
                 .overlay(
                     RoundedRectangle(cornerRadius: 5)
                         .stroke(Color(.systemGray5), lineWidth: 1)
                 )
-            .padding(.vertical, 10)
+                .padding(.vertical, 10)
+                
         }
     }
 }
 
 struct FormTextView: View {
+    
     let label: String
     
     @Binding var value: String
@@ -165,6 +189,7 @@ struct FormTextView: View {
             Text(label.uppercased())
                 .font(.system(.headline, design: .rounded))
                 .foregroundColor(Color(.darkGray))
+            
             TextEditor(text: $value)
                 .frame(maxWidth: .infinity)
                 .frame(height: height)
@@ -174,18 +199,7 @@ struct FormTextView: View {
                         .stroke(Color(.systemGray5), lineWidth: 1)
                 )
                 .padding(.top, 10)
+                
         }
-    }
-}
-
-struct NewRestaurantView_Previews: PreviewProvider {
-    static var previews: some View {
-        NewRestaurantView()
-        FormTextField(label: "NAME", placeholder: "Fill in the restaurant name", value: .constant(""))
-            .previewLayout(.fixed(width: 300, height: 300))
-            .previewDisplayName("FormTextField")
-        FormTextView(label: "Description", value: .constant(""))
-            .previewLayout(.sizeThatFits)
-            .previewDisplayName("FormTextView")
     }
 }

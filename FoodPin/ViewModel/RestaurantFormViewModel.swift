@@ -2,7 +2,7 @@
 //  RestaurantFormViewModel.swift
 //  FoodPin
 //
-//  Created by Christyan Duarte on 21/07/23.
+//  Created by Simon Ng on 20/10/2022.
 //
 
 import Foundation
@@ -18,8 +18,9 @@ class RestaurantFormViewModel: ObservableObject {
     @Published var phone: String = ""
     @Published var description: String = ""
     @Published var image: UIImage = UIImage()
-    
+       
     init(restaurant: Restaurant? = nil) {
+        
         if let restaurant = restaurant {
             self.name = restaurant.name
             self.type = restaurant.type
@@ -28,5 +29,6 @@ class RestaurantFormViewModel: ObservableObject {
             self.description = restaurant.summary
             self.image = UIImage(data: restaurant.image) ?? UIImage()
         }
+        
     }
 }

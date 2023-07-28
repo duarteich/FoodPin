@@ -25,6 +25,7 @@ struct RestaurantDetailView: View {
                     .frame(height: 445)
                     .overlay {
                         VStack {
+                            
                             HStack(alignment: .bottom) {
                                 VStack(alignment: .leading, spacing: 5) {
                                     Text(restaurant.name)
@@ -111,15 +112,17 @@ struct RestaurantDetailView: View {
                     Text("\(Image(systemName: "chevron.left"))")
                 }
             }
+            
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
+                Button(action: {
                     restaurant.isFavorite.toggle()
-                } label: {
-                    Image(systemName: restaurant.isFavorite ? "heart.fill" : "heart")
-                        .padding()
+                }) {
+                    Image(systemName: restaurant.isFavorite ? "heart.fill": "heart")
                         .font(.system(size: 25))
                         .foregroundColor(restaurant.isFavorite ? .yellow : .white)
+                        
                 }
+                .opacity(showReview ? 0 : 1)
             }
         }
         .ignoresSafeArea()
@@ -145,6 +148,7 @@ struct RestaurantDetailView_Previews: PreviewProvider {
         NavigationStack {
             RestaurantDetailView(restaurant: (PersistenceController.testData?.first)!)
                 .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+                
         }
         .accentColor(.white)
     }

@@ -5,18 +5,20 @@
 //  Created by Simon Ng on 16/10/2022.
 //
 
+import Combine
 import CoreData
 
-class Restaurant: NSManagedObject {
+public class Restaurant: NSManagedObject {
     
-    @NSManaged var name: String
-    @NSManaged var type: String
-    @NSManaged var location: String
-    @NSManaged var phone: String
-    @NSManaged var summary: String
-    @NSManaged var image: Data
-    @NSManaged var isFavorite: Bool
-    @NSManaged var ratingText: String?
+    @NSManaged public var name: String
+    @NSManaged public var type: String
+    @NSManaged public var location: String
+    @NSManaged public var phone: String
+    @NSManaged public var summary: String
+    @NSManaged public var image: Data
+    @NSManaged public var isFavorite: Bool
+    @NSManaged public var ratingText: String?
+    
 }
 
 extension Restaurant {
@@ -42,9 +44,13 @@ extension Restaurant {
     
     var rating: Rating? {
         get {
-            guard let ratingText = ratingText else { return nil }
+            guard let ratingText = ratingText else {
+                return nil
+            }
+            
             return Rating(rawValue: ratingText)
         }
+        
         set {
             self.ratingText = newValue?.rawValue
         }

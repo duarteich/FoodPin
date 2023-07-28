@@ -8,17 +8,18 @@
 import SwiftUI
 
 struct RestaurantListView: View {
-    
     @Environment(\.managedObjectContext) var context
+    
+    @AppStorage("hasViewedWalkthrough") var hasViewedWalkthrough: Bool = false
     
     @FetchRequest(
         entity: Restaurant.entity(),
         sortDescriptors: [])
-    
     var restaurants: FetchedResults<Restaurant>
     
     @State private var showNewRestaurant = false
     @State private var searchText = ""
+    @State private var showWalkthrough = false
     
     var body: some View {
         NavigationStack {
@@ -29,7 +30,6 @@ struct RestaurantListView: View {
                         .scaledToFit()
                 } else {
                     ForEach(restaurants.indices, id: \.self) { index in
-                        
                         ZStack(alignment: .leading) {
                             NavigationLink(destination: RestaurantDetailView(restaurant: restaurants[index])) {
                                 EmptyView()
@@ -38,7 +38,6 @@ struct RestaurantListView: View {
                             
                             BasicTextImageRow(restaurant: restaurants[index])
                         }
-
                     }
                     .onDelete(perform: deleteRecord)
                     .listRowSeparator(.hidden)
@@ -49,38 +48,44 @@ struct RestaurantListView: View {
             
             .navigationTitle("FoodPin")
             .navigationBarTitleDisplayMode(.automatic)
+            
             .toolbar {
-                Button {
+                Button(action: {
                     self.showNewRestaurant = true
-                } label: {
+                }) {
                     Image(systemName: "plus")
                 }
-
             }
         }
         .accentColor(.primary)
+        .onAppear() {
+            showWalkthrough = hasViewedWalkthrough ? false : true
+        }
         .sheet(isPresented: $showNewRestaurant) {
             NewRestaurantView()
         }
-        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search restaurants...") {
-            Text("Thai").searchCompletion("Thai")
-            Text("Cafe").searchCompletion("Cafe")
+        .sheet(isPresented: $showWalkthrough) {
+            TutorialView()
         }
+        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search restaurants...")
         .onChange(of: searchText) { searchText in
             let predicate = searchText.isEmpty ? NSPredicate(value: true) : NSPredicate(format: "name CONTAINS[c] %@ OR location CONTAINS[c] %@", searchText, searchText)
+            
             restaurants.nsPredicate = predicate
         }
     }
     
     private func deleteRecord(indexSet: IndexSet) {
+        
         for index in indexSet {
             let itemToDelete = restaurants[index]
             context.delete(itemToDelete)
         }
-        
+
         DispatchQueue.main.async {
             do {
                 try context.save()
+
             } catch {
                 print(error)
             }
@@ -169,6 +174,7 @@ struct BasicTextImageRow: View {
                 ActivityView(activityItems: [defaultText])
             }
         }
+
     }
 }
 
@@ -227,9 +233,10 @@ struct RestaurantListView_Previews: PreviewProvider {
         
         BasicTextImageRow(restaurant: (PersistenceController.testData?.first)!)
             .previewLayout(.sizeThatFits)
+            .previewDisplayName("BasicTextImageRow")
                 
-        FullImageRow(imageName: "cafedeadend", name: "Cafe Deadend", type: "Cafe", location: "Hong Kong",
-                     isFavorite: .constant(true))
+        FullImageRow(imageName: "cafedeadend", name: "Cafe Deadend", type: "Cafe", location: "Hong Kong", isFavorite: .constant(true))
             .previewLayout(.sizeThatFits)
+            .previewDisplayName("FullImageRow")
     }
 }
