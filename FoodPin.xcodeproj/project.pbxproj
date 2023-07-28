@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8DF403902A743B6100E89B78 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF4038F2A743B6100E89B78 /* MainView.swift */; };
 		F4AFE4D128F92AA8006639B1 /* FoodPinApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AFE4D028F92AA8006639B1 /* FoodPinApp.swift */; };
 		F4AFE4D328F92AA8006639B1 /* RestaurantListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AFE4D228F92AA8006639B1 /* RestaurantListView.swift */; };
 		F4AFE4D528F92AAA006639B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4AFE4D428F92AAA006639B1 /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8DF4038F2A743B6100E89B78 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		F4AFE4CD28F92AA8006639B1 /* FoodPin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodPin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4AFE4D028F92AA8006639B1 /* FoodPinApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPinApp.swift; sourceTree = "<group>"; };
 		F4AFE4D228F92AA8006639B1 /* RestaurantListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantListView.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				F4AFE4F4290056D3006639B1 /* ReviewView.swift */,
 				F4AFE4F62900EE61006639B1 /* NewRestaurantView.swift */,
 				F4B2A846290288DE009DACEC /* TutorialView.swift */,
+				8DF4038F2A743B6100E89B78 /* MainView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -252,6 +255,7 @@
 				F4B2A81E29011905009DACEC /* ImagePicker.swift in Sources */,
 				F4AFE4D128F92AA8006639B1 /* FoodPinApp.swift in Sources */,
 				F4AFE4E128FBB6C5006639B1 /* Restaurant.swift in Sources */,
+				8DF403902A743B6100E89B78 /* MainView.swift in Sources */,
 				F4B2A842290130E1009DACEC /* FoodPin.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
