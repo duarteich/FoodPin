@@ -23,7 +23,7 @@ struct MainView: View {
                     Label("Discover", systemImage: "wand.and.rays")
                 }
                 .tag(1)
-            Text("About")
+            AboutView()
                 .tabItem {
                     Label("About", systemImage: "square.stack")
                 }
