@@ -133,6 +133,9 @@ struct NewRestaurantView: View {
             print("Failed to save the record...")
             print(error.localizedDescription)
         }
+        
+        let cloudStore = RestaurantCloudStore()
+        cloudStore.saveRecordToCloud(restaurant: restaurant)
     }
 }
 

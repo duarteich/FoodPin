@@ -18,7 +18,7 @@ struct MainView: View {
                     Label("Favorites", systemImage: "tag.fill")
                 }
                 .tag(0)
-            Text("Discover")
+            DiscoverView()
                 .tabItem {
                     Label("Discover", systemImage: "wand.and.rays")
                 }
